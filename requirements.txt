@@ -1,7 +1,9 @@
 langchain
+
 langchain_openai
 
 python-dotenv
+
 langchain_community
 
 langchain_core
@@ -9,6 +11,9 @@ langchain_core
 streamlit
 
 langchain_groq
+
 langchain-huggingface
+
 faiss-cpu
+
 sentence-transformers

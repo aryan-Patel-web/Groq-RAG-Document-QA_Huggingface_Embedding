@@ -5,17 +5,23 @@ from dotenv import load_dotenv
 
 from langchain_groq import ChatGroq
 from langchain_community.embeddings import OllamaEmbeddings
+
 from langchain_huggingface import HuggingFaceEmbeddings
+
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.chains import create_retrieval_chain
 from langchain_community.vectorstores import FAISS
+
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 
 # Load environment variables
+
 load_dotenv()
+
 os.environ['GROK_API_KEY'] = os.getenv("GROK_API_KEY")
+
 os.environ['HF_TOKEN'] = os.getenv("HF_TOKEN")
 
 # Page title
@@ -24,7 +30,9 @@ st.title("📄 RAG Document Q&A with Groq + LLaMA3")
 # Create embeddings safely with device specified to avoid 'meta tensor' error
 def create_embeddings():
     return HuggingFaceEmbeddings(
+        
         model_name="all-MiniLM-L6-v2",
+
         model_kwargs={"device": "cpu"}  # Change to "cuda" if using GPU
     )
 
@@ -42,7 +50,7 @@ Please provide the most accurate response based on the question.
 
 Question: {input}
 """)
-
+@ZSDXfcvgbjnkml.8,;9.0/
 # Vector database creator
 def create_vector_embedding():
     if "vectors" not in st.session_state:

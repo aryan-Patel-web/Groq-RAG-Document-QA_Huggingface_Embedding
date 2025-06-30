@@ -30,7 +30,7 @@ st.title("📄 RAG Document Q&A with Groq + LLaMA3")
 # Create embeddings safely with device specified to avoid 'meta tensor' error
 def create_embeddings():
     return HuggingFaceEmbeddings(
-        
+
         model_name="all-MiniLM-L6-v2",
 
         model_kwargs={"device": "cpu"}  # Change to "cuda" if using GPU
@@ -59,7 +59,7 @@ def create_vector_embedding():
         docs = loader.load()
 
         splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-        final_documents = splitter.split_documents(docs[:50])  # Load only first 50 for speed
+        final_documents = splitter.split_documents(docs[:60])  # Load only first 50 for speed
 
         st.session_state.vectors = FAISS.from_documents(final_documents, st.session_state.embeddings)
         st.session_state.docs_loaded = True
@@ -73,6 +73,7 @@ if st.button("📂 Embed Documents"):
     st.success("✅ Vector database created successfully!")
 
 # Query handling
+
 if user_prompt and "vectors" in st.session_state:
     retriever = st.session_state.vectors.as_retriever()
     document_chain = create_stuff_documents_chain(llm, prompt)
